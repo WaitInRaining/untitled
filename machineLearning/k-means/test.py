@@ -16,4 +16,5 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.scatter(dataSet[:,0].flatten().A[0], dataSet[:,1].flatten().A[0],s=2,c='red')
 ax.scatter(centroids[:,0].flatten().A[0], centroids[:,1].flatten().A[0], s = 5, c='green')
+
 plt.show()

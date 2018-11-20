@@ -75,66 +75,66 @@ import datetime
 # print linalg.norm(data[0,:])
 # print dataMat / data
 
-a= full((2,3), 2)
-print a
-a[1,2]=99
-print  a
-t = array([[ 3. , 1.,  2.],
-            [ 5. , 4., 7]])
-print t
-print mean(a)
-print average(a)
-print ptp(a)
-print median(t)
-print sort(t,1)
-print var(t)
-print std(t)
-print diff(a)
-print log(e)
-print where(t >0)
-print t / a
-index=[0,1,2,3,4]
-print take(t, index)
-print  argmax(t,axis=1)
-print argmin(t)
-print maximum(a,t)
-print minimum(a,t)
-#convolve()
-print  ravel(t)
-# print split(t,3)
-print sys.argv[0]
-r = arange(5)
-s = exp(r)
-print exp(2)
-print linspace(1,8,3)
-print t.sum()
-t.fill(3)
-print t
-print dot(t,a.T)
-print ones_like(a)
-print zeros_like(a)
-print vstack((a,t))
-print intersect1d(t,r)
-print t.clip(1,2)
-r = array([1,2,5,7,9])
-print r.compress(r >2)
-print r.prod()
-print r.cumprod()
-print t.diagonal()
-print t.trace()
+# a= full((2,3), 2)
+# print a
+# a[1,2]=99
+# print  a
+# t = array([[ 3. , 1.,  2.],
+#             [ 5. , 4., 7]])
+# print t
+# print mean(a)
+# print average(a)
+# print ptp(a)
+# print median(t)
+# print sort(t,1)
+# print var(t)
+# print std(t)
+# print diff(a)
+# print log(e)
+# print where(t >0)
+# print t / a
+# index=[0,1,2,3,4]
+# print take(t, index)
+# print  argmax(t,axis=1)
+# print argmin(t)
+# print maximum(a,t)
+# print minimum(a,t)
+# #convolve()
+# print  ravel(t)
+# # print split(t,3)
+# print sys.argv[0]
+# r = arange(5)
+# s = exp(r)
+# print exp(2)
+# print linspace(1,8,3)
+# print t.sum()
+# t.fill(3)
+# print t
+# print dot(t,a.T)
+# print ones_like(a)
+# print zeros_like(a)
+# print vstack((a,t))
+# print intersect1d(t,r)
+# print t.clip(1,2)
+# r = array([1,2,5,7,9])
+# print r.compress(r >2)
+# print r.prod()
+# print r.cumprod()
+# print t.diagonal()
+# print t.trace()
 # print corrcoef(a,t)
-p=polyfit(index,r,4)
-print p
-print polyval(p, 90)
-print polyder(p)
-print roots(p)
-l = array([-1,-0.23, 9, 7,-965])
-print sign(l)
-print sign(t)
-print piecewise(l,[l<0,l>0], [-1,1])
+# p=polyfit(index,r,4)
+# print p
+# print polyval(p, 90)
+# print polyder(p)
+# print roots(p)
+# l = array([-1,-0.23, 9, 7,-965])
+# print sign(l)
+# print sign(t)
+# print piecewise(l,[l<0,l>0], [-1,1])
 # vectorize()
 # print hanning()
-print isreal(t)
+# print isreal(t)
 # print datetime.datetime.strptime("2016-08-23","%Y-%m-%d").date().weekday()
 
 # b = loadtxt("save.txt", delimiter=" ")
@@ -143,3 +143,11 @@ print isreal(t)
 # c = eye(3,4,3)
 # print c
 
+# a  = [i for i in range(10)]
+# print len(a)
+# print a[0:int(len(a)*0.8)]
+# print a[int(len(a)*0.8):len(a)]
+a1 =1;
+a2 =2
+a = (a1,a2,3,4)
+print a
