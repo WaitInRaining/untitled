@@ -36,9 +36,3 @@ finally:
     cursor.close()
     conn.close()
 
-
-
-# a = ["1","2","5"]
-# print a[0]
-# print a[-1]
-# print "".join(a[1:-1])

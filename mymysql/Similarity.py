@@ -13,13 +13,18 @@ def eulidSim(inA, inB):
 # 皮尔逊系数计算
 def pearsSim(inA, inB):
     if len(inA) <3 : return 1.0
+    # 将值从[-1, 1]映射到[0, 1]
     return 0.5+0.5*corrcoef(inA, inB, rowvar=0)[0][1]
 # 余弦相似度
 def cosSim(inA, inB):
     num = float(inA*inB.T)
     denom = linalg.norm(inA) * linalg.norm(inB)
+    # 将值从[-1, 1]映射到[0, 1]
     return 0.5 + 0.5 * (num / denom)
 
+# 获取向量中非零元素的平均值
+def avg(intA):
+    return float(mean(intA[intA > 0], 1)[0][0])
 # 基于用户相似度的推荐
 # 数据矩阵，用户，相似度计算方法，物品
 def userSimiliar(dataMat, user, simMeas, N = 5):
@@ -29,18 +34,22 @@ def userSimiliar(dataMat, user, simMeas, N = 5):
     unratedItems = nonzero(dataMat[user,:].A ==0)[1]
     unratedItemGrad = dict() #未评分物品的评分值
     unratedItemNum = dict() #根据其他用户，对未评分物品进行评分的次数
+
+    # 用户i对商品的平均评分
+    avgRate = avg(dataMat[user,:])
     for item in unratedItems:
         unratedItemNum[item] = 0
         unratedItemGrad[item] = 0
     for i in range(userNum):
         if i == user: continue
+        # 获取用户相似度
         usersSim[0][i] = simMeas(dataMat[user,:], dataMat[i,:])#计算用户i和用户user的相似度
         #获取用户i评分但是用户user没有评分的物品的下标
         unratedItem = list(set(nonzero(logical_or(dataMat[user,:]>0, dataMat[i,:]>0))[1]) - set(nonzero(dataMat[user,:])[1]))
         if len(unratedItem) == 0 :continue #说明用户i所评分过的物品，用户User已评分过
         for item in unratedItem:
-            print unratedItemGrad[item],
-            print dataMat[i,item]
+            # print unratedItemGrad[item],
+            # print dataMat[i,item]
             unratedItemGrad[item] = unratedItemGrad[item]+ usersSim[0][i] * dataMat[i,item]
             unratedItemNum[item] =  unratedItemNum[item]+usersSim[0][i]
 
@@ -91,4 +100,13 @@ def recommend(dataMat, user, N=3, simMeas=cosSim, estMethod = standEst):
         itemScores.append((item, estimatedScore))
     #  根据评分对物品进行排序，返回Top-N
     return sorted(itemScores, key=lambda jj:jj[1], reverse=True)[:N]
+
+def simBetweenUsers(dataMat, users, simMeas):
+    # 初始化用户相似度矩阵
+    simResult = zeros(((users[-1]+1), (users[-1]+1)))
+    for user1 in users:
+        for user2 in users:
+            if(user1 != user2):
+                simResult[user1][user2] = simMeas(dataMat[user1,:], dataMat[user2,:])
+    return  simResult
 
